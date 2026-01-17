@@ -8,7 +8,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "naeem1",
+	"name": "naeem2",
 	"main": ".open-next/worker.js",
 	"compatibility_date": "2025-12-01",
 	"compatibility_flags": [
