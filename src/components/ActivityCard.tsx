@@ -23,73 +23,64 @@ export default function ActivityCard({ activity, destination, formatPrice }: Act
   };
 
   return (
-    <div className="group bg-[var(--surface-1)] rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 ring-2 ring-[var(--border)] hover:ring-[var(--primary)] hover:-translate-y-2 hover:scale-[1.02] smooth-hover animate-fade-in flex flex-col h-full">
-      <Link href={`/activity/${activity.id}`} className="block flex-shrink-0">
+    <article className="group">
+      <Link href={`/activity/${activity.id}`} className="block">
         {/* Image */}
-        <div className="relative h-64 bg-gradient-to-br from-[var(--surface-2)] to-[var(--border)] overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-[var(--surface-2)] mb-4">
           {activity.imageUrl ? (
             <Image
               src={activity.imageUrl}
               alt={activity.name}
               fill
-              className="object-cover group-hover:scale-110 transition-transform duration-500"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               unoptimized
             />
           ) : (
             <div className="flex items-center justify-center h-full">
-              <svg className="w-16 h-16 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+              <span className="text-sm text-[var(--text-3)]">No image</span>
             </div>
           )}
           
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-          
-          <div className="absolute top-3 left-3 right-3 flex items-start justify-between gap-2">
-            {destination && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--surface-1)]/95 backdrop-blur-sm text-xs font-bold text-[var(--text-1)] shadow-lg ring-1 ring-[var(--border)] animate-scale-in">
+          {/* Price badge */}
+          <div className="absolute bottom-3 left-3">
+            <span className="inline-block px-3 py-1.5 bg-white/95 backdrop-blur-sm text-sm font-medium text-[var(--text-1)] rounded-sm">
+              {formatPrice}
+            </span>
+          </div>
+
+          {/* Destination badge */}
+          {destination && (
+            <div className="absolute top-3 left-3">
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white/95 backdrop-blur-sm text-xs text-[var(--text-1)] rounded-sm">
                 <span>{destination.flag}</span>
                 <span>{destination.name}</span>
               </span>
-            )}
+            </div>
+          )}
+        </div>
+
+        {/* Content */}
+        <div>
+          <h3 className="font-serif text-lg text-[var(--text-1)] mb-2 group-hover:text-[var(--primary)] transition-colors duration-200 truncate whitespace-nowrap">
+            {activity.name}
+          </h3>
+          <p className="text-sm text-[var(--text-2)] leading-relaxed line-clamp-2 mb-3">
+            {truncate(activity.description, 100)}
+          </p>
+          
+          {/* Meta */}
+          <div className="flex items-center justify-between">
             {activity.reviewCount > 0 && (
-              <span className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-[var(--accent)]/95 backdrop-blur-sm text-xs font-bold text-[var(--btn-primary-text)] shadow-lg animate-scale-in">
-                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-                <span>{activity.reviewCount}</span>
+              <span className="text-xs text-[var(--text-3)]">
+                {activity.reviewCount} reviews
               </span>
             )}
-          </div>
-
-          <div className="absolute bottom-3 right-3">
-            <span className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--primary-600)] text-white font-bold text-sm shadow-xl">
-              {formatPrice}
+            <span className="text-xs font-medium text-[var(--primary)] group-hover:underline">
+              View details →
             </span>
           </div>
         </div>
       </Link>
-
-      {/* Content */}
-      <div className="p-6 flex flex-col flex-grow">
-        <Link href={`/activity/${activity.id}`}>
-          <h3 className="font-extrabold text-xl text-[var(--text-1)] mb-3 line-clamp-2 group-hover:text-[var(--primary)] transition-colors smooth-hover">
-            {activity.name}
-          </h3>
-          <p className="text-sm text-[var(--text-2)] line-clamp-3 leading-relaxed mb-4 flex-grow">
-            {truncate(activity.description, 120)}
-          </p>
-        </Link>
-        
-        <div className="mt-auto">
-          <Link
-            href={`/activity/${activity.id}`}
-            className="w-full h-10 flex items-center justify-center py-2.5 rounded-xl bg-gradient-to-r from-[var(--surface-2)] to-[var(--surface-1)] hover:from-[var(--surface-1)] hover:to-[var(--surface-2)] text-[var(--text-1)] font-semibold text-sm transition-all duration-300 ring-1 ring-[var(--border)] hover:ring-[var(--primary)] hover:shadow-md text-center smooth-hover"
-          >
-            View Details →
-          </Link>
-        </div>
-      </div>
-    </div>
+    </article>
   );
 }

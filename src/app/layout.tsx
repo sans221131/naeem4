@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Providers from "../components/Providers";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const inter = Inter({
+	variable: "--font-inter",
 	subsets: ["latin"],
+	display: "swap",
 });
 
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
+const playfair = Playfair_Display({
+	variable: "--font-playfair",
 	subsets: ["latin"],
+	display: "swap",
+	weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-	title: "YourBrand Tours - Discover Amazing Activities",
-	description: "Book unforgettable experiences around the world",
+	title: "YourBrand Tours - Curated Travel Experiences",
+	description: "Discover handpicked activities and unforgettable journeys around the world",
 };
 
 export default function RootLayout({
@@ -26,16 +29,16 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className={`${inter.variable} ${playfair.variable}`}>
 			<head>
 				<link rel="icon" href="/favicon.svg" type="image/svg+xml"></link>
 			</head>
-			<body suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-										<Header />
-										<Providers>
-											{children}
-										</Providers>
-										<Footer />
+			<body suppressHydrationWarning className="antialiased">
+				<Header />
+				<Providers>
+					{children}
+				</Providers>
+				<Footer />
 			</body>
 		</html>
 	);

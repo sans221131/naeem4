@@ -124,15 +124,26 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
   const formatPrice = () => {
     const price = typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price);
     if (!Number.isFinite(price) || price === 0) return "Free";
-    return `${activity.currency} ${price.toFixed(2)}`;
+    return `${activity.currency} ${price.toFixed(0)}`;
   };
 
   return (
     <main className="min-h-screen bg-[var(--bg)]">
-      {/* Mobile Hero Section - Completely redesigned */}
+      {/* Mobile Layout */}
       <div className="lg:hidden">
-        {/* Compact Image Header */}
-        <div className="relative h-[240px] w-full">
+        {/* Mobile Breadcrumb */}
+        <div className="bg-[var(--surface-1)] border-b border-[var(--border)] px-4 py-3">
+          <nav className="flex items-center gap-2 text-xs text-[var(--text-3)]">
+            <Link href="/" className="hover:text-[var(--text-1)] transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/destinations" className="hover:text-[var(--text-1)] transition-colors">Destinations</Link>
+            <span>/</span>
+            <span className="text-[var(--text-2)] truncate">{activity.name}</span>
+          </nav>
+        </div>
+
+        {/* Mobile Image */}
+        <div className="relative aspect-[4/3] w-full">
           {activity.imageUrl ? (
             <Image
               src={activity.imageUrl}
@@ -142,78 +153,66 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
               priority
             />
           ) : (
-            <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-900 to-gray-700">
-              <svg className="w-20 h-20 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
+            <div className="flex items-center justify-center h-full bg-[var(--surface-2)]">
+              <span className="text-sm text-[var(--text-3)]">No image</span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-          
-          {/* Rating Badge - Top Right */}
-          <div className="absolute top-3 right-3 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-lg">
-            <svg className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            <span className="text-sm font-bold text-gray-900">4.9</span>
-          </div>
         </div>
 
-        {/* Title Card - Overlapping design */}
-        <div className="relative -mt-8 mx-3 bg-[var(--surface-1)] rounded-2xl shadow-xl p-4 mb-4 border border-[var(--border)]">
-          <h1 className="text-xl font-black text-[var(--text-1)] leading-tight mb-3">
-            {activity.name}
-          </h1>
-          
-          {/* Price & Quick Actions Row */}
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex flex-col">
-              <span className="text-xs text-[var(--text-3)] font-semibold">From</span>
-              <span className="text-2xl font-black text-[var(--primary)]">{formatPrice()}</span>
-              <span className="text-xs text-[var(--text-3)]">per person</span>
+        {/* Mobile Content */}
+        <div className="px-4 py-6 space-y-6">
+          {/* Title & Price */}
+          <div>
+            <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-2">
+              Experience
+            </p>
+            <h1 className="font-serif text-2xl text-[var(--text-1)] leading-tight mb-4">
+              {activity.name}
+            </h1>
+            <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[var(--border)]">
+              <span className="text-xs uppercase tracking-wider text-[var(--text-3)]">From</span>
+              <span className="font-serif text-xl text-[var(--text-1)]">{formatPrice()}</span>
             </div>
-            
-            {/* Quick Booking CTA removed (cart system disabled) */}
+
+            {/* Quick info */}
+            <div className="grid grid-cols-2 gap-2 mb-6 text-xs text-[var(--text-2)]">
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Instant confirmation</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                <span>Free cancellation</span>
+              </div>
+            </div>
+
+            {/* Mobile Booking Card */}
+            <BookingCard
+              price={typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price)}
+              currency={activity.currency}
+            />
           </div>
-        </div>
 
-        {/* Breadcrumb - Moved below title */}
-        <div className="px-3 mb-4">
-          <nav className="flex items-center gap-2 text-xs text-[var(--text-2)] overflow-x-auto scrollbar-hide">
-            <Link href="/" className="hover:text-[var(--primary)] transition whitespace-nowrap">Home</Link>
-            <span>/</span>
-            <Link href="/activities" className="hover:text-[var(--primary)] transition whitespace-nowrap">Activities</Link>
-            <span>/</span>
-            <span className="text-[var(--text-1)] font-medium truncate">{activity.name}</span>
-          </nav>
-        </div>
-
-        {/* Mobile Content Sections */}
-        <div className="px-3 pb-4 space-y-3">
-          {/* Overview Card */}
-          <div className="bg-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-            <h2 className="text-base font-black text-[var(--text-1)] mb-2 flex items-center gap-2">
-              <span>📋</span>
-              <span>Overview</span>
-            </h2>
+          {/* Overview */}
+          <div className="pt-6 border-t border-[var(--border)]">
+            <h2 className="font-serif text-lg text-[var(--text-1)] mb-3">Overview</h2>
             <p className="text-sm text-[var(--text-2)] leading-relaxed whitespace-pre-line">
               {parsed.overview}
             </p>
           </div>
 
-          {/* Highlights Card */}
+          {/* Highlights */}
           {parsed.highlights.length > 0 && (
-            <div className="bg-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-              <h2 className="text-base font-black text-[var(--text-1)] mb-3 flex items-center gap-2">
-                <span>✨</span>
-                <span>Highlights</span>
-              </h2>
+            <div className="pt-6 border-t border-[var(--border)]">
+              <h2 className="font-serif text-lg text-[var(--text-1)] mb-3">Highlights</h2>
               <ul className="space-y-2">
                 {parsed.highlights.map((highlight, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-5 h-5 text-[var(--success)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
+                    <span className="text-[var(--primary)]">—</span>
                     <span>{highlight}</span>
                   </li>
                 ))}
@@ -221,18 +220,15 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             </div>
           )}
 
-          {/* Inclusions Card */}
+          {/* Inclusions */}
           {parsed.inclusions.length > 0 && (
-            <div className="bg-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-              <h2 className="text-base font-black text-[var(--text-1)] mb-3 flex items-center gap-2">
-                <span>✅</span>
-                <span>What&apos;s Included</span>
-              </h2>
+            <div className="pt-6 border-t border-[var(--border)]">
+              <h2 className="font-serif text-lg text-[var(--text-1)] mb-3">What&apos;s Included</h2>
               <ul className="space-y-2">
                 {parsed.inclusions.map((inclusion, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--primary)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                    <svg className="w-4 h-4 text-[var(--primary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                     <span>{inclusion}</span>
                   </li>
@@ -241,18 +237,15 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             </div>
           )}
 
-          {/* Exclusions Card */}
+          {/* Exclusions */}
           {parsed.exclusions.length > 0 && (
-            <div className="bg-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-              <h2 className="text-base font-black text-[var(--text-1)] mb-3 flex items-center gap-2">
-                <span>❌</span>
-                <span>Not Included</span>
-              </h2>
+            <div className="pt-6 border-t border-[var(--border)]">
+              <h2 className="font-serif text-lg text-[var(--text-1)] mb-3">Not Included</h2>
               <ul className="space-y-2">
                 {parsed.exclusions.map((exclusion, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--error)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                    <svg className="w-4 h-4 text-[var(--text-3)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
                     <span>{exclusion}</span>
                   </li>
@@ -261,18 +254,14 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             </div>
           )}
 
+          {/* Extra Sections */}
           {parsed.extraSections.map((section, sectionIndex) => (
-            <div key={sectionIndex} className="bg-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-              <h2 className="text-base font-black text-[var(--text-1)] mb-3 flex items-center gap-2">
-                <span>🧾</span>
-                <span>{section.title}</span>
-              </h2>
+            <div key={sectionIndex} className="pt-6 border-t border-[var(--border)]">
+              <h2 className="font-serif text-lg text-[var(--text-1)] mb-3">{section.title}</h2>
               <ul className="space-y-2">
                 {section.items.map((item, itemIndex) => (
                   <li key={itemIndex} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--text-3)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0 1 1 0 002 0zm-1 3a1 1 0 00-1 1v5a1 1 0 002 0V9a1 1 0 00-1-1z" clipRule="evenodd" />
-                    </svg>
+                    <span className="text-[var(--text-3)]">•</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -280,254 +269,227 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             </div>
           ))}
 
-          {/* Important Info Card */}
-          <div className="bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface-1)] rounded-xl p-4 shadow-md border border-[var(--border)]">
-            <h2 className="text-base font-black text-[var(--text-1)] mb-3 flex items-center gap-2">
-              <span>ℹ️</span>
-              <span>Good to Know</span>
-            </h2>
-            <ul className="space-y-2 text-sm text-[var(--text-2)]">
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-[var(--info)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+          {/* Good to Know */}
+          <div className="bg-[var(--surface-1)] rounded-lg p-4 border border-[var(--border)]">
+            <h2 className="font-serif text-base text-[var(--text-1)] mb-3">Good to Know</h2>
+            <div className="space-y-2 text-xs text-[var(--text-2)]">
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>Instant confirmation</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                 </svg>
                 <span>Mobile voucher accepted</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <svg className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+              </div>
+              <div className="flex items-center gap-2">
+                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 <span>Free cancellation (48h)</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Mobile Booking Card removed */}
-          <div>
-            {/* Booking card (mobile) */}
-            <div className="lg:hidden px-0">
-              {/* dynamically loaded client component */}
-              <BookingCard
-                price={typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price)}
-                currency={activity.currency}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Desktop Layout - Keep original design */}
-      <div className="hidden lg:block">
-        {/* Breadcrumb */}
-        <div className="bg-[var(--surface-1)] border-b border-[var(--border)]">
-          <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 sm:py-4">
-            <nav className="flex items-center gap-2 text-xs sm:text-sm text-[var(--text-2)] overflow-x-auto scrollbar-hide">
-              <Link href="/" className="hover:text-[var(--primary)] transition whitespace-nowrap">Home</Link>
-              <span className="flex-shrink-0">/</span>
-              <Link href="/activities" className="hover:text-[var(--primary)] transition whitespace-nowrap">Activities</Link>
-              <span className="flex-shrink-0">/</span>
-              <span className="text-[var(--text-1)] font-semibold truncate">{activity.name}</span>
-            </nav>
-          </div>
-        </div>
-
-        {/* Hero Image Section with Overlay */}
-        <div className="bg-[var(--surface-1)] pb-4 sm:pb-8">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            <div className="relative h-[350px] md:h-[450px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
-              {activity.imageUrl ? (
-                <Image
-                  src={activity.imageUrl}
-                  alt={activity.name}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full bg-gradient-to-br from-gray-900 to-gray-700">
-                  <svg className="w-32 h-32 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </div>
-              )}
-              
-              {/* Dark gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-              
-              {/* Content overlay */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-8">
-                {/* Top badges */}
-                <div className="flex items-start justify-between gap-2 sm:gap-3">
-                  <div className="flex items-center gap-1.5 sm:gap-2 bg-white/95 backdrop-blur-sm px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-full shadow-lg">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                    <span className="text-sm sm:text-base font-bold text-gray-900">4.9</span>
-                  </div>
-                </div>
-
-                {/* Bottom title and price */}
-                <div>
-                  <h1 className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-2 sm:mb-4 drop-shadow-2xl leading-tight line-clamp-3">
-                    {activity.name}
-                  </h1>
-                  <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-600)] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-bold text-sm sm:text-lg shadow-xl">
-                    <span>From {formatPrice()}</span>
-                  </div>
-                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:block">
+        {/* Breadcrumb */}
+        <section className="bg-[var(--surface-1)] border-b border-[var(--border)]">
+          <div className="container-editorial py-4">
+            <nav className="flex items-center gap-2 text-sm">
+              <Link href="/" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Home</Link>
+              <span className="text-[var(--text-3)]">/</span>
+              <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Destinations</Link>
+              <span className="text-[var(--text-3)]">/</span>
+              <span className="text-[var(--text-1)] truncate">{activity.name}</span>
+            </nav>
+          </div>
+        </section>
+
+        {/* Hero Section */}
+        <section className="bg-[var(--surface-1)]">
+          <div className="container-editorial py-8">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+              {/* Image */}
+              <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[var(--surface-2)]">
+                {activity.imageUrl ? (
+                  <Image
+                    src={activity.imageUrl}
+                    alt={activity.name}
+                    fill
+                    className="object-cover"
+                    priority
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full bg-[var(--surface-2)]">
+                  <span className="text-sm text-[var(--text-3)]">No image</span>
+                </div>
+              )}
+            </div>
+
+              {/* Content */}
+              <div>
+                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-3">
+                  Experience
+                </p>
+                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] leading-tight mb-4">
+                  {activity.name}
+                </h1>
+                
+                <div className="flex items-baseline gap-2 mb-6">
+                  <span className="text-xs uppercase tracking-wider text-[var(--text-3)]">From</span>
+                  <span className="font-serif text-2xl text-[var(--text-1)]">{formatPrice()}</span>
+                </div>
+
+                {/* Quick info */}
+                <div className="space-y-2 mb-8 pb-8 border-b border-[var(--border)]">
+                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
+                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Instant confirmation</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
+                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    <span>Mobile voucher accepted</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
+                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    <span>Free cancellation (48h)</span>
+                  </div>
+                </div>
+
+                {/* Booking Card */}
+                <div className="lg:block">
+                  <BookingCard
+                    price={typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price)}
+                    currency={activity.currency}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-6 sm:py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-            {/* Left Column - Details */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* Overview */}
-              <section className="bg-[var(--surface-1)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-[var(--text-1)] mb-3 sm:mb-4 flex items-center gap-2 sm:gap-3">
-                <span className="text-lg sm:text-xl md:text-2xl">📋</span>
-                Overview
-              </h2>
-              <p className="text-sm sm:text-base md:text-lg text-[var(--text-2)] leading-relaxed whitespace-pre-line">
+        <section className="bg-[var(--bg)]">
+          <div className="container-editorial py-12">
+            {/* Overview */}
+            <div className="max-w-3xl mb-12 pb-12 border-b border-[var(--border)]">
+              <h2 className="font-serif text-2xl text-[var(--text-1)] mb-4">Overview</h2>
+              <p className="text-[var(--text-2)] leading-relaxed whitespace-pre-line">
                 {parsed.overview}
               </p>
-            </section>
+            </div>
 
             {/* Highlights */}
             {parsed.highlights.length > 0 && (
-              <section className="bg-[var(--surface-1)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-[var(--text-1)] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                  <span className="text-lg sm:text-xl md:text-2xl">✨</span>
-                  Highlights
-                </h2>
-                <ul className="space-y-2 sm:space-y-3">
+              <div className="max-w-3xl mb-12 pb-12 border-b border-[var(--border)]">
+                <h2 className="font-serif text-2xl text-[var(--text-1)] mb-6">Highlights</h2>
+                <ul className="space-y-3">
                   {parsed.highlights.map((highlight, idx) => (
-                    <li key={idx} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-[var(--text-2)]">
-                      <svg className="w-5 h-5 sm:w-6 sm:h-6 text-[var(--success)] flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
+                    <li key={idx} className="flex items-start gap-3 text-[var(--text-2)]">
+                      <span className="text-[var(--primary)]">—</span>
                       <span>{highlight}</span>
                     </li>
                   ))}
                 </ul>
-              </section>
+              </div>
             )}
 
-            {/* Inclusions */}
-            {parsed.inclusions.length > 0 && (
-              <section className="bg-[var(--surface-1)] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-[var(--text-1)] mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
-                  <span className="text-lg sm:text-xl md:text-2xl">✅</span>
-                  What&apos;s Included
-                </h2>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-2 sm:gap-3">
-                  {parsed.inclusions.map((inclusion, idx) => (
-                    <li key={idx} className="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-[var(--text-2)]">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[var(--primary)] flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                      <span>{inclusion}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+            {/* Inclusions & Exclusions Grid */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12 pb-12 border-b border-[var(--border)]">
+              {/* Inclusions */}
+              {parsed.inclusions.length > 0 && (
+                <div>
+                  <h2 className="font-serif text-xl text-[var(--text-1)] mb-4">What&apos;s Included</h2>
+                  <ul className="space-y-2">
+                    {parsed.inclusions.map((inclusion, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
+                        <svg className="w-4 h-4 text-[var(--primary)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{inclusion}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-            {/* Exclusions */}
-            {parsed.exclusions.length > 0 && (
-              <section className="bg-[var(--surface-1)] rounded-2xl p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-                <h2 className="text-2xl md:text-3xl font-black text-[var(--text-1)] mb-6 flex items-center gap-3">
-                  <span className="text-[var(--error)]">❌</span>
-                  What&apos;s Not Included
-                </h2>
-                <ul className="space-y-3">
-                  {parsed.exclusions.map((exclusion, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-[var(--text-2)]">
-                      <svg className="w-5 h-5 text-[var(--error)] flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                      </svg>
-                      <span>{exclusion}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )}
+              {/* Exclusions */}
+              {parsed.exclusions.length > 0 && (
+                <div>
+                  <h2 className="font-serif text-xl text-[var(--text-1)] mb-4">Not Included</h2>
+                  <ul className="space-y-2">
+                    {parsed.exclusions.map((exclusion, idx) => (
+                      <li key={idx} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
+                        <svg className="w-4 h-4 text-[var(--text-3)] flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                        <span>{exclusion}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
 
+            {/* Extra Sections */}
             {parsed.extraSections.map((section, sectionIndex) => (
-              <section key={sectionIndex} className="bg-[var(--surface-1)] rounded-2xl p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-                <h2 className="text-2xl md:text-3xl font-black text-[var(--text-1)] mb-6 flex items-center gap-3">
-                  <span className="text-[var(--text-3)]">🧾</span>
-                  {section.title}
-                </h2>
-                <ul className="space-y-3">
+              <div key={sectionIndex} className="max-w-3xl mb-12 pb-12 border-b border-[var(--border)]">
+                <h2 className="font-serif text-xl text-[var(--text-1)] mb-4">{section.title}</h2>
+                <ul className="space-y-2">
                   {section.items.map((item, itemIndex) => (
-                    <li key={itemIndex} className="flex items-start gap-3 text-[var(--text-2)]">
-                      <svg className="w-5 h-5 text-[var(--text-3)] flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0 1 1 0 002 0zm-1 3a1 1 0 00-1 1v5a1 1 0 002 0V9a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
+                    <li key={itemIndex} className="flex items-start gap-2 text-sm text-[var(--text-2)]">
+                      <span className="text-[var(--text-3)]">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
-              </section>
+              </div>
             ))}
 
-            {/* Important Information */}
-            <section className="bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface-1)] rounded-2xl p-6 md:p-8 shadow-lg ring-1 ring-[var(--border)]">
-              <h2 className="text-2xl md:text-3xl font-black text-[var(--text-1)] mb-6 flex items-center gap-3">
-                <span className="text-[var(--info)]">ℹ️</span>
-                Important Information
-              </h2>
-              <ul className="space-y-3 text-[var(--text-2)]">
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-[var(--info)] flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            {/* Good to Know */}
+            <div className="max-w-3xl bg-[var(--surface-1)] rounded-lg p-6 border border-[var(--border)]">
+              <h2 className="font-serif text-xl text-[var(--text-1)] mb-4">Good to Know</h2>
+              <div className="grid sm:grid-cols-2 gap-3 text-sm text-[var(--text-2)]">
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>Instant confirmation upon booking</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  <span>Instant confirmation</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
                   </svg>
-                  <span>Mobile voucher accepted - show on your phone</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  <span>Mobile voucher accepted</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                  <span>Free cancellation up to 48 hours before the activity</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <svg className="w-5 h-5 text-amber-600 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                  <span>Free cancellation (48h)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
                   </svg>
-                  <span>English language support available</span>
-                </li>
-              </ul>
-            </section>
-          </div>
-
-          {/* Right Column - Booking card */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <BookingCard
-                price={typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price)}
-                currency={activity.currency}
-              />
+                  <span>English support available</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+        </section>
       </div>
     </main>
   );

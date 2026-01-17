@@ -606,7 +606,7 @@ const destinationInfo: Record<
 function formatPrice(activity: Activity): string {
   const price = typeof activity.price === "string" ? parseFloat(activity.price) : Number(activity.price);
   if (!Number.isFinite(price) || price === 0) return "Free";
-  return `${activity.currency} ${price.toFixed(2)}`;
+  return `${activity.currency} ${price.toFixed(0)}`;
 }
 
 export default function DestinationPage() {
@@ -637,160 +637,111 @@ export default function DestinationPage() {
 
   return (
     <main className="min-h-screen bg-[var(--bg)]">
-      {/* Breadcrumb */}
-      <div className="bg-[var(--surface-1)] border-b border-[var(--border)]">
-        <div className="max-w-7xl mx-auto px-4 md:px-8 py-4">
-          <nav className="flex items-center gap-2 text-sm text-[var(--text-2)]">
-            <Link href="/" className="hover:text-[var(--primary)] transition">Home</Link>
-            <span>/</span>
-            <Link href="/destinations" className="hover:text-[var(--primary)] transition">Destinations</Link>
-            <span>/</span>
-            <span className="text-[var(--text-1)] font-semibold">{destination?.name || id}</span>
+      {/* Header with Breadcrumb */}
+      <section className="bg-[var(--surface-1)] border-b border-[var(--border)]">
+        <div className="container-editorial py-4">
+          <nav className="flex items-center gap-2 text-sm">
+            <Link href="/" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Home</Link>
+            <span className="text-[var(--text-3)]">/</span>
+            <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Destinations</Link>
+            <span className="text-[var(--text-3)]">/</span>
+            <span className="text-[var(--text-1)]">{destination?.name || id}</span>
           </nav>
         </div>
-      </div>
+      </section>
 
       {/* Hero Section */}
-      <div className="bg-[var(--surface-1)] pb-8">
-        <div className="max-w-7xl mx-auto px-4 md:px-8">
-          <div className="relative h-[300px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl">
-            {destination?.image && (
-              <Image
-                src={destination.image}
-                alt={destination.name}
-                fill
-                className="object-cover"
-                priority
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-            
-            <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-              <div className="flex items-center gap-3 mb-3">
-                <span className="text-5xl md:text-6xl">{destination?.flag}</span>
+      <section className="bg-[var(--surface-1)]">
+        <div className="container-editorial py-8 md:py-12">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            {/* Content */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-4xl">{destination?.flag}</span>
+                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
+                  {activeActivities.length} {activeActivities.length === 1 ? 'Experience' : 'Experiences'}
+                </p>
               </div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-3 drop-shadow-2xl">
+              
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--text-1)] leading-tight mb-6">
                 {destination?.name || id}
               </h1>
-              <p className="text-lg md:text-xl text-white/90 drop-shadow-lg">
-                {activeActivities.length} {activeActivities.length === 1 ? 'activity' : 'activities'} available
-              </p>
+
+              {destination?.description?.length && (
+                <ul className="space-y-3 mb-8">
+                  {destination.description.slice(0, 3).map((line, index) => (
+                    <li key={index} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--primary)] flex-shrink-0" />
+                      <span className="text-base text-[var(--text-2)] leading-relaxed">{line}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <button
+                onClick={() => setIsContactOpen(true)}
+                className="btn btn-primary"
+              >
+                Plan Your Trip
+              </button>
+            </div>
+
+            {/* Image */}
+            <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[var(--surface-2)]">
+              {destination?.image && (
+                <Image
+                  src={destination.image}
+                  alt={destination.name}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              )}
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Description Section */}
-      {destination?.description?.length ? (
-        <div className="max-w-7xl mx-auto px-4 md:px-8 pb-12">
-          <div className="bg-[var(--surface-1)] rounded-3xl border border-[var(--border)] shadow-[0_20px_60px_-35px_rgba(0,0,0,0.3)] overflow-hidden">
-            <div className="p-8 md:p-12">
-              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
-                {/* Left: Content */}
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="h-1 w-12 bg-gradient-to-r from-[#0EA5A4] to-[#0EA5A4]/50 rounded-full"></div>
-                    <h2 className="text-3xl md:text-4xl font-black text-[var(--text-1)]">
-                      About {destination.name}
-                    </h2>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    {destination.description.map((line, index) => (
-                      <div key={index} className="flex items-start gap-3 group">
-                        <div className="flex-shrink-0 mt-1.5">
-                          <div className="h-2 w-2 rounded-full bg-[var(--primary)] group-hover:scale-125 transition-transform"></div>
-                        </div>
-                        <p className="text-lg text-[var(--text-2)] leading-relaxed">{line}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Right: CTA Card */}
-                <div className="lg:w-80 flex-shrink-0">
-                  <div className="bg-[var(--surface-2)] rounded-2xl border border-[var(--border)] shadow-lg p-6 sticky top-24">
-                    <div className="text-center mb-4">
-                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#0EA5A4] to-[#0EA5A4]/80 mb-4">
-                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                      <h3 className="text-xl font-bold text-[var(--text-1)] mb-2">
-                        Plan Your Trip
-                      </h3>
-                      <p className="text-sm text-[var(--text-2)]">
-                        Get personalized recommendations and exclusive deals
-                      </p>
-                    </div>
-                    
-                    <button
-                      onClick={() => setIsContactOpen(true)}
-                      className="w-full py-3.5 rounded-xl bg-gradient-to-r from-[var(--primary)] to-[var(--primary-600)] hover:from-[var(--primary-600)] hover:to-[var(--primary-700)] text-white font-bold text-base shadow-md hover:shadow-xl transition-all smooth-hover active:scale-95 mb-3"
-                    >
-                      Enquire Now
-                    </button>
-                    
-                    <div className="flex items-center justify-center gap-2 text-xs text-[var(--text-3)]">
-                      <svg className="w-4 h-4 text-[var(--primary)]" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span>Free consultation • Quick response</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ) : null}
+      </section>
 
       {/* Activities Section */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-        {activeActivities.length === 0 ? (
-          <div className="text-center py-20">
-            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[var(--surface-2)] mb-6">
-              <svg className="w-10 h-10 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-[var(--text-1)] mb-3">
-              No activities found
-            </h2>
-            <p className="text-[var(--text-2)] mb-8 max-w-md mx-auto">
-              We&apos;re currently adding activities for {destination?.name || id}. Check back soon!
-            </p>
-            <Link
-              href="/destinations"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[var(--primary)] text-white rounded-full font-semibold hover:bg-[var(--primary-600)] transition"
-            >
-              Browse Other Destinations
-            </Link>
-          </div>
-        ) : (
-          <>
-            <div className="mb-8">
-              <h2 className="text-2xl md:text-3xl font-black text-[var(--text-1)] mb-2">
-                Available Activities
-              </h2>
-              <p className="text-[var(--text-2)]">
-                Explore the best experiences in {destination?.name || id}
+      <section className="py-12 md:py-20">
+        <div className="container-editorial">
+          {activeActivities.length === 0 ? (
+            <div className="text-center py-16 border border-dashed border-[var(--border)] rounded-lg">
+              <p className="text-lg text-[var(--text-2)] mb-2">
+                No activities found for {destination?.name || id}
               </p>
+              <p className="text-sm text-[var(--text-3)] mb-6">
+                Check back soon for new experiences
+              </p>
+              <Link href="/destinations" className="btn btn-secondary">
+                Browse Other Destinations
+              </Link>
             </div>
+          ) : (
+            <>
+              <div className="mb-10">
+                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-2">
+                  Available Experiences
+                </p>
+                <h2 className="font-serif text-2xl md:text-3xl text-[var(--text-1)]">
+                  Discover {destination?.name || id}
+                </h2>
+              </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {activeActivities.map((activity) => (
-                <ActivityCard
-                  key={activity.id}
-                  activity={activity}
-                  destination={destination}
-                  formatPrice={formatPrice(activity)}
-                />
-              ))}
-            </div>
-          </>
-        )}
-      </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                {activeActivities.map((activity) => (
+                  <ActivityCard
+                    key={activity.id}
+                    activity={activity}
+                    destination={destination}
+                    formatPrice={formatPrice(activity)}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </section>
 
       {/* Contact Form Modal */}
       {isContactOpen && (

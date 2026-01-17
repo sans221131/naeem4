@@ -67,7 +67,7 @@ export default async function Home() {
     .slice(0, 5);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen" suppressHydrationWarning>
       <div suppressHydrationWarning>
         {heroActivities.length > 0 ? (
           <ClientOnly>
