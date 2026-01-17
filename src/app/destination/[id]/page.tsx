@@ -638,40 +638,42 @@ export default function DestinationPage() {
   return (
     <main className="min-h-screen bg-[var(--bg)]">
       {/* Header with Breadcrumb */}
-      <section className="bg-[var(--surface-1)] border-b border-[var(--border)]">
-        <div className="container-editorial py-4">
+      <section className="bg-gradient-to-b from-[var(--surface-1)] to-transparent border-b border-[var(--border)]">
+        <div className="container-editorial py-5">
           <nav className="flex items-center gap-2 text-sm">
-            <Link href="/" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Home</Link>
+            <Link href="/" className="text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300">Home</Link>
             <span className="text-[var(--text-3)]">/</span>
-            <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Destinations</Link>
+            <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300">Destinations</Link>
             <span className="text-[var(--text-3)]">/</span>
-            <span className="text-[var(--text-1)]">{destination?.name || id}</span>
+            <span className="text-[var(--primary)]">{destination?.name || id}</span>
           </nav>
         </div>
       </section>
 
       {/* Hero Section */}
       <section className="bg-[var(--surface-1)]">
-        <div className="container-editorial py-8 md:py-12">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+        <div className="container-editorial py-10 md:py-16">
+          <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
             {/* Content */}
             <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">{destination?.flag}</span>
-                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
-                  {activeActivities.length} {activeActivities.length === 1 ? 'Experience' : 'Experiences'}
-                </p>
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-5xl drop-shadow-lg">{destination?.flag}</span>
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)]">
+                  <span className="text-xs font-medium uppercase tracking-wider text-[var(--primary)]">
+                    {activeActivities.length} {activeActivities.length === 1 ? 'Experience' : 'Experiences'}
+                  </span>
+                </div>
               </div>
               
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--text-1)] leading-tight mb-6">
+              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-[var(--text-1)] leading-tight mb-8">
                 {destination?.name || id}
               </h1>
 
               {destination?.description?.length && (
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-4 mb-10">
                   {destination.description.slice(0, 3).map((line, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[var(--primary)] flex-shrink-0" />
+                    <li key={index} className="flex items-start gap-4">
+                      <span className="mt-2 h-2 w-2 rounded-full bg-[var(--primary)] flex-shrink-0" />
                       <span className="text-base text-[var(--text-2)] leading-relaxed">{line}</span>
                     </li>
                   ))}
@@ -680,14 +682,17 @@ export default function DestinationPage() {
 
               <button
                 onClick={() => setIsContactOpen(true)}
-                className="btn btn-primary"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[var(--primary)] text-[var(--bg)] rounded-full text-sm font-semibold tracking-wide uppercase hover:bg-[var(--primary-hover)] transition-all duration-300 shadow-lg shadow-[var(--primary)]/25 hover:shadow-xl hover:shadow-[var(--primary)]/30 hover:-translate-y-0.5 group"
               >
-                Plan Your Trip
+                <span>Plan Your Trip</span>
+                <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
               </button>
             </div>
 
             {/* Image */}
-            <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[var(--surface-2)]">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--surface-2)] shadow-2xl shadow-black/20">
               {destination?.image && (
                 <Image
                   src={destination.image}
@@ -703,32 +708,37 @@ export default function DestinationPage() {
       </section>
 
       {/* Activities Section */}
-      <section className="py-12 md:py-20">
+      <section className="py-14 md:py-24">
         <div className="container-editorial">
           {activeActivities.length === 0 ? (
-            <div className="text-center py-16 border border-dashed border-[var(--border)] rounded-lg">
-              <p className="text-lg text-[var(--text-2)] mb-2">
+            <div className="text-center py-20 border border-dashed border-[var(--border)] rounded-2xl bg-gradient-to-br from-[var(--surface-1)] to-[var(--bg)]">
+              <p className="text-lg text-[var(--text-2)] mb-3">
                 No activities found for {destination?.name || id}
               </p>
-              <p className="text-sm text-[var(--text-3)] mb-6">
+              <p className="text-sm text-[var(--text-3)] mb-8">
                 Check back soon for new experiences
               </p>
-              <Link href="/destinations" className="btn btn-secondary">
+              <Link href="/destinations" className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--border)] text-[var(--text-1)] rounded-full text-sm font-semibold tracking-wide uppercase hover:bg-[var(--surface-1)] hover:border-[var(--text-3)] transition-all duration-300">
                 Browse Other Destinations
               </Link>
             </div>
           ) : (
             <>
-              <div className="mb-10">
-                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-2">
-                  Available Experiences
-                </p>
-                <h2 className="font-serif text-2xl md:text-3xl text-[var(--text-1)]">
+              <div className="mb-12">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-4">
+                  <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                  </svg>
+                  <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
+                    Available Experiences
+                  </span>
+                </div>
+                <h2 className="font-serif text-3xl md:text-4xl text-[var(--text-1)]">
                   Discover {destination?.name || id}
                 </h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8">
                 {activeActivities.map((activity) => (
                   <ActivityCard
                     key={activity.id}

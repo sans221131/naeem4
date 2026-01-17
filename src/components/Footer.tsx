@@ -4,14 +4,20 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-[var(--surface-1)] border-t border-[var(--border)]">
-      <div className="container-editorial py-16 md:py-20">
+    <footer className="relative bg-[var(--surface-1)]">
+      {/* Top accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/30 to-transparent" />
+      
+      <div className="container-editorial py-20 md:py-24">
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
           {/* Brand Column */}
           <div className="md:col-span-4">
-            <Link href="/" className="inline-block mb-6">
-              <span className="font-serif text-xl text-[var(--text-1)]">
+            <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
+              <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-[var(--bg)] font-serif text-base font-semibold">
+                Y
+              </span>
+              <span className="font-serif text-xl text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors duration-300">
                 YourBrand
               </span>
             </Link>
@@ -20,10 +26,10 @@ export default function Footer() {
               Discover extraordinary destinations around the world.
             </p>
             {/* Social Links */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <a 
                 href="#" 
-                className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200"
+                className="w-10 h-10 rounded-full bg-[var(--surface-2)] flex items-center justify-center text-[var(--text-3)] hover:text-[var(--primary)] hover:bg-[var(--surface-2)]/80 border border-[var(--border)] hover:border-[var(--primary)]/30 transition-all duration-300"
                 aria-label="Instagram"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -41,7 +47,7 @@ export default function Footer() {
               </a>
               <a 
                 href="#" 
-                className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200"
+                className="w-10 h-10 rounded-full bg-[var(--surface-2)] flex items-center justify-center text-[var(--text-3)] hover:text-[var(--primary)] hover:bg-[var(--surface-2)]/80 border border-[var(--border)] hover:border-[var(--primary)]/30 transition-all duration-300"
                 aria-label="Facebook"
               >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -53,14 +59,14 @@ export default function Footer() {
 
           {/* Navigation Columns */}
           <div className="md:col-span-2">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)] mb-5">
               Explore
             </h4>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/destinations" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   Destinations
                 </Link>
@@ -68,7 +74,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/#faq" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   FAQ
                 </Link>
@@ -76,7 +82,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/cart" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   Your Cart
                 </Link>
@@ -85,14 +91,14 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)] mb-5">
               Company
             </h4>
             <ul className="space-y-3">
               <li>
                 <Link 
                   href="/about" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   About Us
                 </Link>
@@ -100,7 +106,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/contact" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   Contact
                 </Link>
@@ -108,7 +114,7 @@ export default function Footer() {
               <li>
                 <Link 
                   href="/careers" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] hover:translate-x-1 inline-block transition-all duration-300"
                 >
                   Careers
                 </Link>
@@ -117,14 +123,14 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-4">
-            <h4 className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-4">
+            <h4 className="text-xs font-semibold uppercase tracking-widest text-[var(--primary)] mb-5">
               Get in Touch
             </h4>
             <ul className="space-y-3">
               <li>
                 <a 
                   href="mailto:hello@yourbrand.com" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] transition-colors duration-300"
                 >
                   hello@yourbrand.com
                 </a>
@@ -132,7 +138,7 @@ export default function Footer() {
               <li>
                 <a 
                   href="tel:+1234567890" 
-                  className="text-sm text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors duration-200"
+                  className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] transition-colors duration-300"
                 >
                   +1 (234) 567-890
                 </a>
@@ -146,7 +152,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-[var(--border)] mt-12 pt-8">
+        <div className="border-t border-[var(--border)]/50 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-[var(--text-3)]">
               © {currentYear} YourBrand. All rights reserved.
@@ -154,13 +160,13 @@ export default function Footer() {
             <div className="flex items-center gap-6">
               <Link 
                 href="/privacy" 
-                className="text-xs text-[var(--text-3)] hover:text-[var(--text-2)] transition-colors duration-200"
+                className="text-xs text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300"
               >
                 Privacy Policy
               </Link>
               <Link 
                 href="/terms" 
-                className="text-xs text-[var(--text-3)] hover:text-[var(--text-2)] transition-colors duration-200"
+                className="text-xs text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300"
               >
                 Terms of Service
               </Link>

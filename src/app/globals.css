@@ -2,71 +2,83 @@
 
 :root {
 	/* ========================================
-	   PREMIUM EDITORIAL DESIGN SYSTEM
-	   "Quiet Luxury / Travel Magazine"
+	   HIGH-TICKET TRAVEL CONCIERGE
+	   "Luxury Editorial" Dark Theme
 	   ======================================== */
 
-	/* Core Surfaces - "Paper" System */
-	--bg: #EEE6DA;
-	--surface-1: #FBF7F0;
-	--surface-2: #E5D8C9;
-	--border: #D2C2B1;
+	/* Core Surfaces */
+	--bg: #070A0F;
+	--surface-1: #0D131B;
+	--surface-2: #121A24;
+	--border: #223041;
 
-	/* Typography - "Ink" System */
-	--text-1: #1C1917;
-	--text-2: #645C54;
-	--text-3: #8A8178;
+	/* Typography */
+	--text-1: #F3F4F6;
+	--text-2: #A3AFBF;
+	--text-3: #6B7280;
 
 	/* Brand Colors */
-	--primary: #5B21B6;
-	--primary-hover: #4C1D95;
-	--accent: #BE185D;
-	--focus-ring: #DDD6FE;
+	--primary: #D6B77A;
+	--primary-hover: #C9A867;
+	--primary-active: #B89450;
+	--accent: #E11D48;
+	--focus-ring: #F3E2B8;
 
-	/* Buttons */
-	--btn-primary-bg: #5B21B6;
-	--btn-primary-hover: #4C1D95;
-	--btn-primary-text: #FBF7F0;
+	/* Buttons - Primary */
+	--btn-primary-bg: #D6B77A;
+	--btn-primary-hover: #C9A867;
+	--btn-primary-active: #B89450;
+	--btn-primary-text: #070A0F;
+	--btn-primary-ring: #F3E2B8;
 	
+	/* Buttons - Secondary (outline) */
 	--btn-secondary-bg: transparent;
-	--btn-secondary-hover: #E5D8C9;
-	--btn-secondary-text: #1C1917;
-	--btn-secondary-border: #D2C2B1;
+	--btn-secondary-hover: #121A24;
+	--btn-secondary-text: #F3F4F6;
+	--btn-secondary-border: #223041;
 	
-	--btn-ghost-hover: #E5D8C9;
-	--btn-ghost-text: #1C1917;
+	/* Buttons - Ghost */
+	--btn-ghost-bg: transparent;
+	--btn-ghost-hover: #0D131B;
+	--btn-ghost-text: #F3F4F6;
 	
-	--btn-destructive-bg: #991B1B;
-	--btn-destructive-hover: #7F1D1D;
-	--btn-destructive-text: #FBF7F0;
+	/* Buttons - Destructive */
+	--btn-destructive-bg: #E11D48;
+	--btn-destructive-hover: #BE123C;
+	--btn-destructive-text: #F3F4F6;
 
 	/* Links */
-	--link: #5B21B6;
-	--link-hover: #4C1D95;
+	--link: #D6B77A;
+	--link-hover: #F3E2B8;
+	--link-visited: #C084FC;
 
 	/* Inputs */
-	--input-bg: #FBF7F0;
-	--input-border: #D2C2B1;
-	--input-focus-border: #5B21B6;
-	--input-focus-ring: #DDD6FE;
-	--placeholder: #8A8178;
+	--input-bg: #0D131B;
+	--input-border: #223041;
+	--input-focus-border: #D6B77A;
+	--input-focus-ring: #F3E2B8;
+	--placeholder: #6B7280;
 
-	/* Chips / Tags */
-	--chip-bg: #E5D8C9;
-	--chip-text: #645C54;
-	--chip-border: #D2C2B1;
+	/* Chips / Tags - Neutral */
+	--chip-bg: #121A24;
+	--chip-text: #A3AFBF;
+	--chip-border: #223041;
 	
-	--chip-active-bg: #DDD6FE;
-	--chip-active-text: #4C1D95;
+	/* Chips / Tags - Active */
+	--chip-active-bg: #1A2533;
+	--chip-active-text: #F3F4F6;
+	--chip-active-border: #2B3C53;
 	
-	--chip-accent-bg: #FCE7F3;
-	--chip-accent-text: #9D174D;
+	/* Chips / Tags - Price/Deal */
+	--chip-accent-bg: #2A1E10;
+	--chip-accent-text: #D6B77A;
+	--chip-accent-border: #4B3720;
 
-	/* Status */
-	--success: #166534;
-	--warning: #B45309;
-	--error: #991B1B;
-	--info: #0369A1;
+	/* Status Colors (dark-UI safe) */
+	--success: #22C55E;
+	--warning: #F59E0B;
+	--error: #F87171;
+	--info: #38BDF8;
 
 	/* Spacing Scale */
 	--space-1: 0.25rem;  /* 4px */
@@ -189,19 +201,22 @@ h1, h2, h3, .heading {
 .card {
 	background: var(--surface-1);
 	border: 1px solid var(--border);
-	border-radius: var(--radius-lg);
-	transition: transform var(--transition-base), border-color var(--transition-base);
+	border-radius: var(--radius-xl);
+	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+	box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.3);
 }
 
 .card:hover {
-	transform: translateY(-2px);
-	border-color: var(--text-3);
+	transform: translateY(-4px);
+	border-color: var(--primary);
+	box-shadow: 0 12px 40px -8px rgba(214, 183, 122, 0.15);
 }
 
 .card-featured {
-	background: var(--surface-2);
+	background: linear-gradient(145deg, var(--surface-2), var(--surface-1));
 	border: 1px solid var(--border);
-	border-radius: var(--radius-lg);
+	border-radius: var(--radius-xl);
+	box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.4);
 }
 
 /* Premium Button Base */
@@ -210,14 +225,17 @@ h1, h2, h3, .heading {
 	align-items: center;
 	justify-content: center;
 	gap: 0.5rem;
-	padding: 0.75rem 1.5rem;
-	font-size: 0.9375rem;
+	padding: 0.875rem 1.75rem;
+	font-size: 0.875rem;
 	font-weight: 500;
-	border-radius: var(--radius-md);
-	transition: all var(--transition-fast);
+	letter-spacing: 0.025em;
+	border-radius: 100px;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	cursor: pointer;
 	text-decoration: none;
 	border: none;
+	position: relative;
+	overflow: hidden;
 }
 
 .btn:focus-visible {
@@ -228,10 +246,13 @@ h1, h2, h3, .heading {
 .btn-primary {
 	background: var(--btn-primary-bg);
 	color: var(--btn-primary-text);
+	box-shadow: 0 4px 14px -3px rgba(214, 183, 122, 0.4);
 }
 
 .btn-primary:hover {
 	background: var(--btn-primary-hover);
+	transform: translateY(-1px);
+	box-shadow: 0 6px 20px -3px rgba(214, 183, 122, 0.5);
 }
 
 .btn-secondary {
@@ -242,6 +263,8 @@ h1, h2, h3, .heading {
 
 .btn-secondary:hover {
 	background: var(--btn-secondary-hover);
+	border-color: var(--primary);
+	color: var(--primary);
 }
 
 .btn-ghost {
@@ -372,12 +395,12 @@ html {
 
 /* Simple fade animation */
 @keyframes fadeIn {
-	from { opacity: 0; transform: translateY(8px); }
+	from { opacity: 0; transform: translateY(12px); }
 	to { opacity: 1; transform: translateY(0); }
 }
 
 .animate-fade-in {
-	animation: fadeIn 0.4s ease-out;
+	animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Slide in for notifications */
@@ -387,5 +410,38 @@ html {
 }
 
 .animate-slide-in {
-	animation: slideIn 0.3s ease-out;
+	animation: slideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Subtle glow effect */
+@keyframes subtleGlow {
+	0%, 100% { box-shadow: 0 0 20px rgba(214, 183, 122, 0.1); }
+	50% { box-shadow: 0 0 30px rgba(214, 183, 122, 0.2); }
+}
+
+.animate-glow {
+	animation: subtleGlow 3s ease-in-out infinite;
+}
+
+/* Image reveal animation */
+@keyframes imageReveal {
+	from { clip-path: inset(0 100% 0 0); }
+	to { clip-path: inset(0 0 0 0); }
+}
+
+.animate-reveal {
+	animation: imageReveal 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Stagger children animation helper */
+.stagger-children > * {
+	opacity: 0;
+	animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }

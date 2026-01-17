@@ -216,17 +216,17 @@ export default function HeroBanner({
       style={heroStyle}
       className="relative w-full bg-[var(--bg)] lg:h-[var(--heroH)]"
     >
-      <div className="container-editorial py-8 lg:py-12 lg:h-full">
+      <div className="container-editorial py-10 lg:py-16 lg:h-full">
         {/* Main Grid */}
         <div
-          className="grid gap-8 lg:h-full lg:min-h-0 lg:grid-cols-12 lg:items-stretch"
+          className="grid gap-8 lg:gap-12 lg:h-full lg:min-h-0 lg:grid-cols-12 lg:items-stretch"
           onMouseEnter={() => (hoverRef.current = true)}
           onMouseLeave={() => (hoverRef.current = false)}
         >
           {/* LEFT - Image Section */}
           <div className="lg:col-span-7 lg:flex lg:h-full lg:min-h-0 lg:flex-col">
-            <div className="relative overflow-hidden rounded-lg bg-[var(--surface-2)] lg:flex-1 lg:min-h-0">
-              <div className="relative h-[400px] md:h-[480px] lg:h-full">
+            <div className="relative overflow-hidden rounded-3xl bg-[var(--surface-2)] lg:flex-1 lg:min-h-0 shadow-2xl shadow-black/30">
+              <div className="relative h-[420px] md:h-[500px] lg:h-full">
                 {/* Previous layer for transition */}
                 {previous && motionPref !== "reduce" && prevImg && (
                   <NextImage
@@ -245,7 +245,7 @@ export default function HeroBanner({
                     src={currentImg}
                     alt={title}
                     fill
-                    className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out"
+                    className="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out"
                     unoptimized
                   />
                 ) : (
@@ -255,12 +255,12 @@ export default function HeroBanner({
                 )}
 
                 {/* Subtle gradient overlay */}
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--bg)]/70 via-black/20 to-transparent" />
 
                 {/* Destination badge */}
                 {destinationId && (
                   <div className="absolute left-4 top-4">
-                    <span className="inline-block rounded-sm bg-white/90 px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-[var(--text-1)] backdrop-blur-sm">
+                    <span className="inline-block rounded-sm bg-[var(--surface-1)]/90 border border-[var(--border)] px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-[var(--text-1)] backdrop-blur-sm">
                       {String(destinationId)}
                     </span>
                   </div>
@@ -271,7 +271,7 @@ export default function HeroBanner({
                   <>
                     <button
                       onClick={prevFn}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[var(--text-1)] backdrop-blur-sm transition-all duration-200 hover:bg-white"
+                      className="absolute left-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-1)]/90 border border-[var(--border)] text-[var(--text-1)] backdrop-blur-sm transition-all duration-200 hover:bg-[var(--surface-1)] hover:border-[var(--primary)]/30"
                       aria-label="Previous"
                     >
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -280,7 +280,7 @@ export default function HeroBanner({
                     </button>
                     <button
                       onClick={next}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[var(--text-1)] backdrop-blur-sm transition-all duration-200 hover:bg-white"
+                      className="absolute right-4 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-[var(--surface-1)]/90 border border-[var(--border)] text-[var(--text-1)] backdrop-blur-sm transition-all duration-200 hover:bg-[var(--surface-1)] hover:border-[var(--primary)]/30"
                       aria-label="Next"
                     >
                       <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -292,10 +292,10 @@ export default function HeroBanner({
 
                 {/* Progress bar */}
                 {len > 1 && !paused && motionPref !== "reduce" && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white/20">
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--border)]">
                     <div
                       key={progressKey}
-                      className="h-full bg-white"
+                      className="h-full bg-[var(--primary)]"
                       style={{ width: "0%", animation: `heroProgress ${AUTO_MS}ms linear forwards` }}
                     />
                   </div>

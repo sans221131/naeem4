@@ -25,18 +25,18 @@ export default function AddToCartButton({
     }
   };
 
-  const baseClasses = "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 smooth-hover";
+  const baseClasses = "inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300";
   
   const variantClasses = {
     primary: inCart
-      ? "bg-[var(--success)] hover:bg-[var(--success)]/90 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl smooth-hover"
-      : "bg-gradient-to-r from-[var(--btn-primary-bg)] to-[var(--btn-primary-hover)] hover:from-[var(--btn-primary-hover)] hover:to-[var(--btn-primary-bg)] text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl smooth-hover",
+      ? "bg-[var(--success)] hover:bg-[var(--success)]/90 text-[var(--bg)] px-8 py-4 rounded-full shadow-lg shadow-[var(--success)]/25 hover:shadow-xl"
+      : "bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--bg)] px-8 py-4 rounded-full shadow-lg shadow-[var(--primary)]/25 hover:shadow-xl hover:shadow-[var(--primary)]/30 hover:-translate-y-0.5",
     secondary: inCart
-      ? "bg-[var(--success)]/10 text-[var(--success)] border-2 border-[var(--success)]/30 px-4 py-2 rounded-lg smooth-hover"
-      : "bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] border-2 border-[var(--btn-secondary-border)] hover:border-[var(--primary)] px-4 py-2 rounded-lg hover:bg-[var(--btn-secondary-hover)] smooth-hover",
+      ? "bg-[var(--success)]/10 text-[var(--success)] border-2 border-[var(--success)]/30 px-5 py-2.5 rounded-full"
+      : "bg-[var(--btn-secondary-bg)] text-[var(--btn-secondary-text)] border-2 border-[var(--btn-secondary-border)] hover:border-[var(--primary)] px-5 py-2.5 rounded-full hover:bg-[var(--btn-secondary-hover)]",
     small: inCart
-      ? "bg-[var(--success)] text-white px-3 py-1.5 rounded-lg text-sm smooth-hover"
-      : "bg-gradient-to-r from-[var(--btn-primary-bg)] to-[var(--btn-primary-hover)] hover:from-[var(--btn-primary-hover)] hover:to-[var(--btn-primary-bg)] text-white px-3 py-1.5 rounded-lg text-sm smooth-hover",
+      ? "bg-[var(--success)] text-[var(--bg)] px-4 py-2 rounded-full text-sm"
+      : "bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--bg)] px-4 py-2 rounded-full text-sm shadow-md shadow-[var(--primary)]/20 hover:shadow-lg hover:-translate-y-0.5",
   };
 
   return (

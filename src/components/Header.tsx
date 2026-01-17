@@ -55,50 +55,58 @@ export default function Header() {
         />
       )}
 
-      <header className="sticky top-0 z-50 bg-[var(--surface-1)]/95 backdrop-blur-sm border-b border-[var(--border)]">
+      <header className="sticky top-0 z-50 bg-[var(--bg)]/80 backdrop-blur-xl border-b border-[var(--border)]/50">
         <div className="container-editorial">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-[72px]">
             {/* Logo */}
             <Link 
               href="/" 
-              className="font-serif text-xl font-medium text-[var(--text-1)] hover:text-[var(--primary)] transition-colors duration-150"
+              className="group flex items-center gap-2"
             >
-              YourBrand
+              <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-[var(--bg)] font-serif text-sm font-semibold">
+                Y
+              </span>
+              <span className="font-serif text-lg font-medium text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors duration-300">
+                YourBrand
+              </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            <nav className="hidden md:flex items-center gap-1 bg-[var(--surface-1)]/50 backdrop-blur-sm px-2 py-1.5 rounded-full border border-[var(--border)]/50">
               <Link 
                 href="/destinations" 
-                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-[var(--radius-md)] transition-all duration-150"
+                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-full transition-all duration-300"
               >
                 Destinations
               </Link>
               <Link 
                 href="/#faq" 
-                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-[var(--radius-md)] transition-all duration-150"
+                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-full transition-all duration-300"
               >
                 FAQ
               </Link>
               <button 
                 onClick={handleRandomDestination}
-                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-[var(--radius-md)] transition-all duration-150"
+                className="px-4 py-2 text-sm text-[var(--text-2)] hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] rounded-full transition-all duration-300 flex items-center gap-1.5"
               >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 00-3.7-3.7 48.678 48.678 0 00-7.324 0 4.006 4.006 0 00-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3l-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 003.7 3.7 48.656 48.656 0 007.324 0 4.006 4.006 0 003.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3l-3 3" />
+                </svg>
                 Surprise Me
               </button>
             </nav>
 
             {/* Desktop Actions */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden md:flex items-center gap-4">
               <button 
                 onClick={() => setShowContactForm(true)}
-                className="px-4 py-2 text-sm font-medium text-[var(--text-1)] hover:text-[var(--primary)] transition-colors duration-150"
+                className="text-sm font-medium text-[var(--text-2)] hover:text-[var(--primary)] transition-colors duration-300"
               >
                 Contact
               </button>
               <Link 
                 href="/destinations"
-                className="px-4 py-2 text-sm font-medium bg-[var(--btn-primary-bg)] text-[var(--btn-primary-text)] rounded-[var(--radius-md)] hover:bg-[var(--btn-primary-hover)] transition-colors duration-150"
+                className="px-5 py-2.5 text-sm font-medium bg-[var(--primary)] text-[var(--bg)] rounded-full hover:bg-[var(--primary-hover)] transition-all duration-300 shadow-lg shadow-[var(--primary)]/20 hover:shadow-[var(--primary)]/30 hover:-translate-y-0.5"
               >
                 Start Planning
               </Link>

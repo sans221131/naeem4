@@ -66,14 +66,17 @@ export default function CountriesSection({ activities }: { activities: Activity[
   };
 
   return (
-    <section className="bg-[var(--bg)] py-16 md:py-24">
+    <section className="bg-[var(--bg)] py-20 md:py-28">
       <div className="container-editorial">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--text-3)] mb-3">
-              Curated Experiences
-            </p>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] animate-pulse" />
+              <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
+                Curated Experiences
+              </span>
+            </div>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)]">
               Discover {activeDestinationData?.name}
             </h2>
@@ -86,18 +89,15 @@ export default function CountriesSection({ activities }: { activities: Activity[
                 key={dest.id}
                 onClick={() => setActiveDestination(dest.id)}
                 className={`
-                  group relative px-4 py-2 text-sm transition-all duration-300
+                  group relative px-5 py-2.5 text-sm rounded-full transition-all duration-300 border
                   ${activeDestination === dest.id
-                    ? "text-[var(--surface-1)]"
-                    : "text-[var(--text-2)] hover:text-[var(--text-1)]"
+                    ? "text-[var(--bg)] bg-[var(--primary)] border-[var(--primary)] shadow-lg shadow-[var(--primary)]/20"
+                    : "text-[var(--text-2)] border-[var(--border)] hover:border-[var(--primary)]/50 hover:text-[var(--text-1)]"
                   }
                 `}
               >
-                {activeDestination === dest.id && (
-                  <span className="absolute inset-0 bg-[var(--text-1)] rounded-full" />
-                )}
-                <span className="relative flex items-center gap-2">
-                  <span>{dest.flag}</span>
+                <span className="flex items-center gap-2">
+                  <span className="text-base">{dest.flag}</span>
                   <span className="font-medium">{dest.name}</span>
                 </span>
               </button>
@@ -117,18 +117,18 @@ export default function CountriesSection({ activities }: { activities: Activity[
         ) : (
           <>
             {/* Magazine Layout */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 mb-5">
               {/* Featured Card - Large */}
               {featuredActivity && (
                 <div className="lg:col-span-7 group">
                   <Link href={`/activity/${featuredActivity.id}`} className="block relative">
-                    <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-xl bg-[var(--surface-2)]">
+                    <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-2xl bg-[var(--surface-2)] shadow-xl shadow-black/20">
                       {featuredActivity.imageUrl ? (
                         <Image
                           src={featuredActivity.imageUrl}
                           alt={featuredActivity.name}
                           fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
+                          className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                           unoptimized
                         />
                       ) : (
@@ -138,25 +138,34 @@ export default function CountriesSection({ activities }: { activities: Activity[
                       )}
                       
                       {/* Gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-black/30 to-transparent" />
                       
                       {/* Content overlay */}
-                      <div className="absolute inset-0 p-6 flex flex-col justify-end">
-                        <span className="inline-flex self-start px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-[var(--text-1)] rounded-full mb-3">
+                      <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                        <span className="inline-flex self-start px-4 py-1.5 bg-[var(--surface-1)]/90 backdrop-blur-md text-sm font-semibold text-[var(--primary)] rounded-full mb-4 border border-[var(--border)]/50">
                           {formatPrice(featuredActivity)}
                         </span>
-                        <h3 className="font-serif text-xl md:text-2xl lg:text-3xl text-white mb-2 line-clamp-2">
+                        <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl text-white mb-2 line-clamp-2">
                           {featuredActivity.name}
                         </h3>
-                        <p className="text-sm text-white/80 line-clamp-2 max-w-lg">
+                        <p className="text-sm text-white/70 line-clamp-2 max-w-lg">
                           {truncate(featuredActivity.description, 120)}
                         </p>
+                      </div>
+                      
+                      {/* Hover action */}
+                      <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                        <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[var(--primary)] text-[var(--bg)] shadow-lg">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                          </svg>
+                        </span>
                       </div>
                     </div>
                   </Link>
                   <button
                     onClick={() => handleEnquire(featuredActivity)}
-                    className="mt-3 text-sm font-medium text-[var(--text-2)] hover:text-[var(--text-1)] transition-colors"
+                    className="mt-4 text-sm font-medium text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300"
                   >
                     Enquire about this →
                   </button>
@@ -164,17 +173,17 @@ export default function CountriesSection({ activities }: { activities: Activity[
               )}
 
               {/* Side Stack */}
-              <div className="lg:col-span-5 flex flex-col gap-4">
+              <div className="lg:col-span-5 flex flex-col gap-5">
                 {sideActivities.map((activity) => (
                   <div key={activity.id} className="group flex-1">
                     <Link href={`/activity/${activity.id}`} className="block h-full">
-                      <div className="relative h-full min-h-[180px] overflow-hidden rounded-xl bg-[var(--surface-2)]">
+                      <div className="relative h-full min-h-[200px] overflow-hidden rounded-2xl bg-[var(--surface-2)] shadow-lg shadow-black/10">
                         {activity.imageUrl ? (
                           <Image
                             src={activity.imageUrl}
                             alt={activity.name}
                             fill
-                            className="object-cover transition-transform duration-700 group-hover:scale-105"
+                            className="object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                             unoptimized
                           />
                         ) : (
@@ -183,10 +192,10 @@ export default function CountriesSection({ activities }: { activities: Activity[
                           </div>
                         )}
                         
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg)] via-black/30 to-transparent" />
                         
                         <div className="absolute inset-0 p-5 flex flex-col justify-end">
-                          <span className="inline-flex self-start px-2.5 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-[var(--text-1)] rounded-full mb-2">
+                          <span className="inline-flex self-start px-3 py-1 bg-[var(--surface-1)]/90 backdrop-blur-md text-xs font-semibold text-[var(--primary)] rounded-full mb-2 border border-[var(--border)]/50">
                             {formatPrice(activity)}
                           </span>
                           <h3 className="font-serif text-lg text-white line-clamp-1">
@@ -222,7 +231,7 @@ export default function CountriesSection({ activities }: { activities: Activity[
                         )}
                         
                         <div className="absolute top-2 right-2">
-                          <span className="px-2 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-[var(--text-1)] rounded">
+                          <span className="px-2 py-1 bg-[var(--surface-1)]/90 backdrop-blur-sm text-xs font-medium text-[var(--primary)] rounded border border-[var(--border)]">
                             {formatPrice(activity)}
                           </span>
                         </div>

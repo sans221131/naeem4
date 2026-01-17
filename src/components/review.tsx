@@ -157,49 +157,51 @@ export default function ReviewsSection() {
   }, []);
 
   return (
-    <section className="bg-[var(--surface-1)] py-20 md:py-28 overflow-hidden">
+    <section className="bg-[var(--surface-1)] py-24 md:py-32 overflow-hidden">
       <div className="container-editorial">
         {/* Header */}
-        <div className="text-center mb-14">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--primary)] mb-3">
-            Testimonials
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] mb-4">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-6">
+            <svg className="w-4 h-4 text-[var(--primary)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.95a1 1 0 00.95.69h4.154c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.286 3.95c.3.921-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.286-3.95a1 1 0 00-.364-1.118l-3.36-2.44c-.783-.57-.38-1.81.588-1.81h4.154a1 1 0 00.95-.69l1.286-3.95z" />
+            </svg>
+            <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
+              Testimonials
+            </span>
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] mb-5">
             What Travelers Say
           </h2>
-          <div className="flex items-center justify-center gap-6 text-sm text-[var(--text-3)]">
-            <span className="flex items-center gap-1.5">
-              <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.95a1 1 0 00.95.69h4.154c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.286 3.95c.3.921-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.286-3.95a1 1 0 00-.364-1.118l-3.36-2.44c-.783-.57-.38-1.81.588-1.81h4.154a1 1 0 00.95-.69l1.286-3.95z" />
-              </svg>
-              <span className="font-medium text-[var(--text-1)]">4.9</span> average rating
+          <div className="flex items-center justify-center gap-4 text-sm">
+            <span className="flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)]">
+              <span className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => (
+                  <svg key={i} className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.95a1 1 0 00.95.69h4.154c.969 0 1.371 1.24.588 1.81l-3.36 2.44a1 1 0 00-.364 1.118l1.286 3.95c.3.921-.755 1.688-1.54 1.118l-3.36-2.44a1 1 0 00-1.176 0l-3.36 2.44c-.784.57-1.838-.197-1.539-1.118l1.286-3.95a1 1 0 00-.364-1.118l-3.36-2.44c-.783-.57-.38-1.81.588-1.81h4.154a1 1 0 00.95-.69l1.286-3.95z" />
+                  </svg>
+                ))}
+              </span>
+              <span className="font-semibold text-[var(--text-1)]">4.9</span>
+              <span className="text-[var(--text-3)]">(500+ reviews)</span>
             </span>
-            <span className="w-1 h-1 rounded-full bg-[var(--border)]" />
-            <span><span className="font-medium text-[var(--text-1)]">500+</span> happy travelers</span>
           </div>
         </div>
 
         {/* Featured Review Card */}
         <div 
-          className="max-w-3xl mx-auto mb-12"
+          className="max-w-3xl mx-auto mb-14"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="bg-[var(--primary)] rounded-3xl p-8 md:p-12 text-white relative overflow-hidden">
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-                <pattern id="dots" width="8" height="8" patternUnits="userSpaceOnUse">
-                  <circle cx="1" cy="1" r="0.8" fill="currentColor" />
-                </pattern>
-                <rect width="100%" height="100%" fill="url(#dots)" />
-              </svg>
-            </div>
+          <div className="bg-gradient-to-br from-[var(--surface-2)] to-[var(--surface-1)] border border-[var(--border)] rounded-[2rem] p-10 md:p-14 relative overflow-hidden shadow-2xl shadow-black/20">
+            {/* Subtle gradient accent */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/5 via-transparent to-[var(--accent)]/5" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[var(--primary)]/30 to-transparent" />
             
             <div className="relative text-center">
               {/* Quote icon */}
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/10 mb-6">
-                <svg className="w-6 h-6 text-white/60" fill="currentColor" viewBox="0 0 24 24">
+              <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[var(--primary)]/10 border border-[var(--primary)]/20 mb-8">
+                <svg className="w-7 h-7 text-[var(--primary)]" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M4.583 17.321C3.553 16.227 3 15 3 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179zm10 0C13.553 16.227 13 15 13 13.011c0-3.5 2.457-6.637 6.03-8.188l.893 1.378c-3.335 1.804-3.987 4.145-4.247 5.621.537-.278 1.24-.375 1.929-.311 1.804.167 3.226 1.648 3.226 3.489a3.5 3.5 0 01-3.5 3.5c-1.073 0-2.099-.49-2.748-1.179z" />
                 </svg>
               </div>
@@ -207,9 +209,9 @@ export default function ReviewsSection() {
               {/* Quote */}
               <blockquote 
                 key={activeReview.id} 
-                className="font-serif text-2xl md:text-3xl lg:text-4xl leading-snug mb-8 animate-fade-in"
+                className="font-serif text-2xl md:text-3xl lg:text-4xl leading-snug mb-10 animate-fade-in text-[var(--text-1)]"
               >
-                {activeReview.text}
+                “{activeReview.text}”
               </blockquote>
               
               {/* Author */}
@@ -217,11 +219,11 @@ export default function ReviewsSection() {
                 <img 
                   src={activeReview.image} 
                   alt={activeReview.name}
-                  className="w-14 h-14 rounded-full object-cover ring-4 ring-white/20"
+                  className="w-16 h-16 rounded-2xl object-cover ring-4 ring-[var(--primary)]/10"
                 />
                 <div className="text-left">
-                  <p className="font-medium text-lg">{activeReview.name}</p>
-                  <p className="text-sm text-white/70">{activeReview.location} → {activeReview.destination}</p>
+                  <p className="font-semibold text-lg text-[var(--text-1)]">{activeReview.name}</p>
+                  <p className="text-sm text-[var(--text-3)]">{activeReview.location} → {activeReview.destination}</p>
                 </div>
               </div>
             </div>
@@ -274,10 +276,10 @@ export default function ReviewsSection() {
                   }}
                   className={`
                     group flex-shrink-0 w-[320px] text-left rounded-2xl p-6 
-                    transition-all duration-300 ease-out
+                    transition-all duration-300 ease-out border
                     ${isActive 
-                      ? "bg-[var(--primary)] text-white shadow-2xl shadow-[var(--primary)]/25 scale-105" 
-                      : "bg-[var(--bg)] shadow-lg shadow-black/5"
+                      ? "bg-[var(--primary)] border-[var(--primary)] shadow-xl shadow-[var(--primary)]/20 scale-105" 
+                      : "bg-[var(--surface-2)] border-[var(--border)] hover:border-[var(--primary)]/30"
                     }
                   `}
                 >
@@ -287,7 +289,7 @@ export default function ReviewsSection() {
                       {[...Array(5)].map((_, i) => (
                         <svg 
                           key={i} 
-                          className={`w-4 h-4 ${isActive ? "text-white/90" : "text-amber-400"}`} 
+                          className={`w-4 h-4 ${isActive ? "text-[var(--bg)]" : "text-amber-400"}`} 
                           fill="currentColor" 
                           viewBox="0 0 20 20"
                         >
@@ -296,7 +298,7 @@ export default function ReviewsSection() {
                       ))}
                     </div>
                     <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                      isActive ? "bg-white/20 text-white" : "bg-[var(--surface-1)] text-[var(--text-3)]"
+                      isActive ? "bg-[var(--bg)]/20 text-[var(--bg)]" : "bg-[var(--surface-1)] text-[var(--text-3)]"
                     }`}>
                       {review.destination}
                     </span>
@@ -304,30 +306,30 @@ export default function ReviewsSection() {
                   
                   {/* Quote */}
                   <p className={`text-[15px] leading-relaxed mb-5 ${
-                    isActive ? "text-white/90" : "text-[var(--text-2)]"
+                    isActive ? "text-[var(--bg)]/90" : "text-[var(--text-2)]"
                   }`}>
                     &ldquo;{review.text}&rdquo;
                   </p>
                   
                   {/* Author */}
                   <div className={`flex items-center gap-3 pt-4 border-t ${
-                    isActive ? "border-white/20" : "border-[var(--border)]"
+                    isActive ? "border-[var(--bg)]/20" : "border-[var(--border)]"
                   }`}>
                     <img 
                       src={review.image} 
                       alt={review.name}
                       className={`w-11 h-11 rounded-full object-cover ring-2 ${
-                        isActive ? "ring-white/30" : "ring-[var(--border)]"
+                        isActive ? "ring-[var(--bg)]/30" : "ring-[var(--border)]"
                       }`}
                     />
                     <div className="flex-1 min-w-0">
                       <p className={`font-medium truncate ${
-                        isActive ? "text-white" : "text-[var(--text-1)]"
+                        isActive ? "text-[var(--bg)]" : "text-[var(--text-1)]"
                       }`}>
                         {review.name}
                       </p>
                       <p className={`text-sm ${
-                        isActive ? "text-white/60" : "text-[var(--text-3)]"
+                        isActive ? "text-[var(--bg)]/60" : "text-[var(--text-3)]"
                       }`}>
                         {review.location}
                       </p>

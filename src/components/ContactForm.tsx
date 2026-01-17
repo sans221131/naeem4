@@ -71,20 +71,20 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
   };
 
   return (
-    <div className="fixed inset-0 bg-[var(--text-1)]/40 backdrop-blur-sm z-[9999] flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-[var(--surface-1)] rounded-lg max-w-lg w-full my-4 border border-[var(--border)]">
+    <div className="fixed inset-0 bg-black/70 backdrop-blur-md z-[9999] flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-[var(--surface-1)] rounded-2xl max-w-lg w-full my-4 border border-[var(--border)] shadow-2xl shadow-black/20 overflow-hidden">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[var(--border)]">
+        <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-gradient-to-r from-[var(--surface-1)] to-[var(--surface-2)]">
           <div>
             <h2 className="font-serif text-xl text-[var(--text-1)]">Get in Touch</h2>
-            <p className="text-xs text-[var(--text-3)] mt-1">We&apos;ll respond within 24 hours</p>
+            <p className="text-xs text-[var(--primary)] mt-1">We&apos;ll respond within 24 hours</p>
           </div>
           <button
             onClick={onClose}
-            className="p-2 hover:bg-[var(--surface-2)] rounded-sm transition-colors duration-200"
+            className="p-2.5 hover:bg-[var(--bg)] rounded-xl transition-all duration-300 group"
             aria-label="Close"
           >
-            <X className="w-5 h-5 text-[var(--text-2)]" />
+            <X className="w-5 h-5 text-[var(--text-2)] group-hover:text-[var(--text-1)] transition-colors" />
           </button>
         </div>
 
@@ -92,19 +92,19 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
         <form onSubmit={handleSubmit} className="p-6 space-y-5 max-h-[calc(85vh-80px)] overflow-y-auto">
           {/* Cart Items Summary */}
           {cartItems && cartItems.length > 0 && (
-            <div className="bg-[var(--surface-2)] border border-[var(--border)] rounded-sm p-4">
-              <div className="flex items-center justify-between mb-3">
+            <div className="bg-gradient-to-br from-[var(--surface-2)] to-[var(--bg)] border border-[var(--border)] rounded-xl p-5">
+              <div className="flex items-center justify-between mb-4">
                 <h3 className="text-sm font-medium text-[var(--text-1)]">Selected Items</h3>
-                <span className="text-xs text-[var(--text-3)]">
+                <span className="text-xs px-2.5 py-1 bg-[var(--primary)]/10 text-[var(--primary)] rounded-full">
                   {cartItems.length} {cartItems.length === 1 ? 'item' : 'items'}
                 </span>
               </div>
               <div className="space-y-2 max-h-32 overflow-y-auto">
                 {cartItems.map((item) => (
-                  <div key={item.id} className="flex items-center justify-between text-sm py-2 border-b border-[var(--border)] last:border-0">
+                  <div key={item.id} className="flex items-center justify-between text-sm py-2.5 border-b border-[var(--border)]/50 last:border-0">
                     <span className="text-[var(--text-2)]">{item.name}</span>
                     {Number(item.price) > 0 && (
-                      <span className="text-[var(--text-1)]">
+                      <span className="text-[var(--primary)] font-medium">
                         {item.currency} {Number(item.price).toFixed(0)}
                       </span>
                     )}
@@ -128,7 +128,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
                 required
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-sm border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--text-1)] focus:outline-none transition-colors duration-200 text-sm"
+                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/10 transition-all duration-300 text-sm"
                 placeholder="John Doe"
               />
             </div>
@@ -148,7 +148,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-sm border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--text-1)] focus:outline-none transition-colors duration-200 text-sm"
+                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/10 transition-all duration-300 text-sm"
                 placeholder="john@example.com"
               />
             </div>
@@ -164,7 +164,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
                 name="phoneCountryCode"
                 value={formData.phoneCountryCode}
                 onChange={handleChange}
-                className="px-3 py-3 rounded-sm border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--text-1)] focus:outline-none transition-colors duration-200 text-sm"
+                className="px-4 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/10 transition-all duration-300 text-sm cursor-pointer"
               >
                 <option value="+1">+1</option>
                 <option value="+44">+44</option>
@@ -184,7 +184,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleChange}
-                  className="w-full pl-10 pr-4 py-3 rounded-sm border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--text-1)] focus:outline-none transition-colors duration-200 text-sm"
+                  className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/10 transition-all duration-300 text-sm"
                   placeholder="123-456-7890"
                 />
               </div>
@@ -204,7 +204,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
                 rows={3}
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 rounded-sm border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--text-1)] focus:outline-none transition-colors duration-200 resize-none text-sm"
+                className="w-full pl-10 pr-4 py-3.5 rounded-xl border border-[var(--border)] bg-[var(--bg)] text-[var(--text-1)] focus:border-[var(--primary)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/10 transition-all duration-300 resize-none text-sm"
                 placeholder="Tell us about your travel plans..."
               />
             </div>
@@ -212,7 +212,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
 
           {/* Error Message */}
           {error && (
-            <div className="bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] px-4 py-3 rounded-sm text-sm">
+            <div className="bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] px-4 py-3.5 rounded-xl text-sm">
               {error}
             </div>
           )}
@@ -221,7 +221,7 @@ export default function ContactForm({ onClose, cartItems, onSuccess }: ContactFo
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 rounded-sm bg-[var(--text-1)] hover:bg-[var(--text-2)] disabled:bg-[var(--border)] text-white text-sm font-medium tracking-wide uppercase transition-colors duration-200 disabled:cursor-not-allowed"
+            className="w-full py-4 rounded-full bg-[var(--primary)] hover:bg-[var(--primary-hover)] disabled:bg-[var(--border)] text-[var(--bg)] text-sm font-semibold tracking-wide uppercase transition-all duration-300 disabled:cursor-not-allowed shadow-lg shadow-[var(--primary)]/20 hover:shadow-xl hover:shadow-[var(--primary)]/30 hover:-translate-y-0.5"
           >
             {isSubmitting ? "Submitting..." : "Submit Enquiry"}
           </button>

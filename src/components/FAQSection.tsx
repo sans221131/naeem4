@@ -120,14 +120,19 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
   };
 
   return (
-    <section id="faq" className="bg-[var(--bg)] py-20 md:py-28">
+    <section id="faq" className="bg-[var(--bg)] py-24 md:py-32">
       <div className="container-editorial">
         {/* Header */}
-        <div className="text-center mb-12 md:mb-16 max-w-2xl mx-auto">
-          <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-3">
-            Support
-          </p>
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] leading-tight mb-4">
+        <div className="text-center mb-14 md:mb-20 max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-6">
+            <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)]">
+              Support
+            </span>
+          </div>
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] leading-tight mb-5">
             Frequently Asked Questions
           </h2>
           <p className="text-base text-[var(--text-2)]">
@@ -137,25 +142,28 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
 
         {/* Chat Interface */}
         <div className="max-w-2xl mx-auto">
-          <div className="border border-[var(--border)] rounded-lg overflow-hidden bg-[var(--surface-1)]">
+          <div className="border border-[var(--border)] rounded-2xl overflow-hidden bg-[var(--surface-1)] shadow-xl shadow-black/10">
             {/* Chat Header */}
-            <div className="flex items-center justify-between px-5 py-4 border-b border-[var(--border)]">
-              <div className="flex items-center gap-3">
-                <div className="h-8 w-8 rounded-full bg-[var(--primary)] flex items-center justify-center">
-                  <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                  </svg>
+            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-gradient-to-r from-[var(--surface-1)] to-[var(--surface-2)]">
+              <div className="flex items-center gap-4">
+                <div className="relative">
+                  <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center shadow-lg shadow-[var(--primary)]/20">
+                    <svg className="h-5 w-5 text-[var(--bg)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                    </svg>
+                  </div>
+                  <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[var(--success)] rounded-full border-2 border-[var(--surface-1)]" />
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-[var(--text-1)]">Support Assistant</p>
-                  <p className="text-xs text-[var(--text-3)]">Instant replies</p>
+                  <p className="text-sm font-semibold text-[var(--text-1)]">Support Assistant</p>
+                  <p className="text-xs text-[var(--success)]">Online • Instant replies</p>
                 </div>
               </div>
 
               <button
                 type="button"
                 onClick={clearChat}
-                className="text-xs text-[var(--text-3)] hover:text-[var(--text-2)] transition-colors duration-200"
+                className="text-xs font-medium text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300 px-3 py-1.5 rounded-full hover:bg-[var(--surface-2)]"
               >
                 Clear chat
               </button>
@@ -164,7 +172,7 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
             {/* Messages */}
             <div 
               ref={containerRef} 
-              className="px-5 py-5 max-h-[400px] overflow-y-auto bg-[var(--bg)]"
+              className="px-6 py-6 max-h-[420px] overflow-y-auto bg-gradient-to-b from-[var(--bg)] to-[var(--surface-1)]"
             >
               <div className="space-y-4">
                 {messages.map((m) => {
@@ -177,9 +185,9 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
                     >
                       <div
                         className={`
-                          max-w-[85%] rounded-lg px-4 py-3
+                          max-w-[85%] rounded-2xl px-5 py-3.5
                           ${isUser
-                            ? "bg-[var(--primary)] text-white"
+                            ? "bg-[var(--primary)] text-[var(--bg)]"
                             : "bg-[var(--surface-1)] text-[var(--text-1)] border border-[var(--border)]"
                           }
                         `}
@@ -202,12 +210,12 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
             </div>
 
             {/* Quick Questions */}
-            <div className="border-t border-[var(--border)] bg-[var(--surface-1)] px-5 py-4">
-              <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-3">
+            <div className="border-t border-[var(--border)] bg-[var(--surface-1)] px-6 py-5">
+              <p className="text-xs font-medium uppercase tracking-wider text-[var(--primary)] mb-4">
                 Common Questions
               </p>
 
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {faqItems.map((item, idx) => {
                   const disabled = isTyping;
                   const alreadyAsked = askedQuestions.has(item.question);
@@ -219,12 +227,12 @@ export default function FAQSection({ items }: { items?: FAQItem[] }) {
                       onClick={() => ask(item)}
                       disabled={disabled}
                       className={`
-                        px-3 py-2 text-xs rounded-sm border transition-all duration-200
+                        px-4 py-2.5 text-xs rounded-xl border transition-all duration-300
                         ${disabled
                           ? "border-[var(--border)] text-[var(--text-3)] cursor-not-allowed"
                           : alreadyAsked
-                          ? "border-[var(--border)] text-[var(--text-3)]"
-                          : "border-[var(--border)] text-[var(--text-2)] hover:border-[var(--text-3)] hover:text-[var(--text-1)]"
+                          ? "border-[var(--primary)]/30 text-[var(--primary)]/60 bg-[var(--primary)]/5"
+                          : "border-[var(--border)] text-[var(--text-2)] hover:border-[var(--primary)] hover:text-[var(--primary)] hover:bg-[var(--primary)]/5 hover:shadow-lg hover:shadow-[var(--primary)]/5"
                         }
                       `}
                     >

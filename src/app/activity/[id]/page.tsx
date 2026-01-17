@@ -132,13 +132,13 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
       {/* Mobile Layout */}
       <div className="lg:hidden">
         {/* Mobile Breadcrumb */}
-        <div className="bg-[var(--surface-1)] border-b border-[var(--border)] px-4 py-3">
+        <div className="bg-gradient-to-b from-[var(--surface-1)] to-[var(--bg)] border-b border-[var(--border)] px-4 py-4">
           <nav className="flex items-center gap-2 text-xs text-[var(--text-3)]">
-            <Link href="/" className="hover:text-[var(--text-1)] transition-colors">Home</Link>
+            <Link href="/" className="hover:text-[var(--primary)] transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/destinations" className="hover:text-[var(--text-1)] transition-colors">Destinations</Link>
+            <Link href="/destinations" className="hover:text-[var(--primary)] transition-colors">Destinations</Link>
             <span>/</span>
-            <span className="text-[var(--text-2)] truncate">{activity.name}</span>
+            <span className="text-[var(--primary)] truncate">{activity.name}</span>
           </nav>
         </div>
 
@@ -160,30 +160,32 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
         </div>
 
         {/* Mobile Content */}
-        <div className="px-4 py-6 space-y-6">
+        <div className="px-4 py-8 space-y-8">
           {/* Title & Price */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-2">
-              Experience
-            </p>
-            <h1 className="font-serif text-2xl text-[var(--text-1)] leading-tight mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-4">
+              <span className="text-xs font-medium uppercase tracking-wider text-[var(--primary)]">
+                Experience
+              </span>
+            </div>
+            <h1 className="font-serif text-2xl text-[var(--text-1)] leading-tight mb-5">
               {activity.name}
             </h1>
-            <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[var(--border)]">
+            <div className="flex items-baseline gap-2 mb-7 pb-7 border-b border-[var(--border)]/50">
               <span className="text-xs uppercase tracking-wider text-[var(--text-3)]">From</span>
-              <span className="font-serif text-xl text-[var(--text-1)]">{formatPrice()}</span>
+              <span className="font-serif text-2xl text-[var(--primary)]">{formatPrice()}</span>
             </div>
 
             {/* Quick info */}
-            <div className="grid grid-cols-2 gap-2 mb-6 text-xs text-[var(--text-2)]">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="grid grid-cols-2 gap-3 mb-7 text-xs text-[var(--text-2)]">
+              <div className="flex items-center gap-2 p-3 bg-[var(--surface-1)] rounded-xl">
+                <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
                 <span>Instant confirmation</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="flex items-center gap-2 p-3 bg-[var(--surface-1)] rounded-xl">
+                <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
                 </svg>
                 <span>Free cancellation</span>
@@ -270,25 +272,31 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
           ))}
 
           {/* Good to Know */}
-          <div className="bg-[var(--surface-1)] rounded-lg p-4 border border-[var(--border)]">
-            <h2 className="font-serif text-base text-[var(--text-1)] mb-3">Good to Know</h2>
-            <div className="space-y-2 text-xs text-[var(--text-2)]">
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+          <div className="bg-gradient-to-br from-[var(--surface-1)] to-[var(--surface-2)] rounded-2xl p-5 border border-[var(--border)] shadow-lg shadow-black/5">
+            <h2 className="font-serif text-base text-[var(--text-1)] mb-4">Good to Know</h2>
+            <div className="space-y-3 text-xs text-[var(--text-2)]">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
                 <span>Instant confirmation</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                </svg>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                  </svg>
+                </div>
                 <span>Mobile voucher accepted</span>
               </div>
-              <div className="flex items-center gap-2">
-                <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                  <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </div>
                 <span>Free cancellation (48h)</span>
               </div>
             </div>
@@ -299,24 +307,24 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
       {/* Desktop Layout */}
       <div className="hidden lg:block">
         {/* Breadcrumb */}
-        <section className="bg-[var(--surface-1)] border-b border-[var(--border)]">
-          <div className="container-editorial py-4">
+        <section className="bg-gradient-to-b from-[var(--surface-1)] to-transparent border-b border-[var(--border)]">
+          <div className="container-editorial py-5">
             <nav className="flex items-center gap-2 text-sm">
-              <Link href="/" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Home</Link>
+              <Link href="/" className="text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300">Home</Link>
               <span className="text-[var(--text-3)]">/</span>
-              <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors duration-200">Destinations</Link>
+              <Link href="/destinations" className="text-[var(--text-3)] hover:text-[var(--primary)] transition-colors duration-300">Destinations</Link>
               <span className="text-[var(--text-3)]">/</span>
-              <span className="text-[var(--text-1)] truncate">{activity.name}</span>
+              <span className="text-[var(--primary)] truncate">{activity.name}</span>
             </nav>
           </div>
         </section>
 
         {/* Hero Section */}
         <section className="bg-[var(--surface-1)]">
-          <div className="container-editorial py-8">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+          <div className="container-editorial py-10">
+            <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
               {/* Image */}
-              <div className="relative aspect-[4/3] rounded-lg overflow-hidden bg-[var(--surface-2)]">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--surface-2)] shadow-2xl shadow-black/20">
                 {activity.imageUrl ? (
                   <Image
                     src={activity.imageUrl}
@@ -334,36 +342,44 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
 
               {/* Content */}
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-3)] mb-3">
-                  Experience
-                </p>
-                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] leading-tight mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--surface-2)] rounded-full border border-[var(--border)] mb-5">
+                  <span className="text-xs font-medium uppercase tracking-wider text-[var(--primary)]">
+                    Experience
+                  </span>
+                </div>
+                <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl text-[var(--text-1)] leading-tight mb-5">
                   {activity.name}
                 </h1>
                 
-                <div className="flex items-baseline gap-2 mb-6">
+                <div className="flex items-baseline gap-2 mb-8">
                   <span className="text-xs uppercase tracking-wider text-[var(--text-3)]">From</span>
-                  <span className="font-serif text-2xl text-[var(--text-1)]">{formatPrice()}</span>
+                  <span className="font-serif text-3xl text-[var(--primary)]">{formatPrice()}</span>
                 </div>
 
                 {/* Quick info */}
-                <div className="space-y-2 mb-8 pb-8 border-b border-[var(--border)]">
-                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                <div className="space-y-3 mb-10 pb-10 border-b border-[var(--border)]/50">
+                  <div className="flex items-center gap-3 text-sm text-[var(--text-2)]">
+                    <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
                     <span>Instant confirmation</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                    </svg>
+                  <div className="flex items-center gap-3 text-sm text-[var(--text-2)]">
+                    <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                      </svg>
+                    </div>
                     <span>Mobile voucher accepted</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-[var(--text-2)]">
-                    <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                  <div className="flex items-center gap-3 text-sm text-[var(--text-2)]">
+                    <div className="w-8 h-8 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                      <svg className="w-4 h-4 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </div>
                     <span>Free cancellation (48h)</span>
                   </div>
                 </div>
@@ -459,31 +475,39 @@ export default async function ActivityPage({ params }: ActivityPageProps) {
             ))}
 
             {/* Good to Know */}
-            <div className="max-w-3xl bg-[var(--surface-1)] rounded-lg p-6 border border-[var(--border)]">
-              <h2 className="font-serif text-xl text-[var(--text-1)] mb-4">Good to Know</h2>
-              <div className="grid sm:grid-cols-2 gap-3 text-sm text-[var(--text-2)]">
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+            <div className="max-w-3xl bg-gradient-to-br from-[var(--surface-1)] to-[var(--surface-2)] rounded-2xl p-8 border border-[var(--border)] shadow-xl shadow-black/10">
+              <h2 className="font-serif text-xl text-[var(--text-1)] mb-6">Good to Know</h2>
+              <div className="grid sm:grid-cols-2 gap-4 text-sm text-[var(--text-2)]">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
                   <span>Instant confirmation</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
                   <span>Mobile voucher accepted</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
-                  </svg>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </div>
                   <span>Free cancellation (48h)</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <svg className="w-4 h-4 text-[var(--text-3)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-                  </svg>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--primary)]/10 flex items-center justify-center">
+                    <svg className="w-5 h-5 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                  </div>
                   <span>English support available</span>
                 </div>
               </div>
