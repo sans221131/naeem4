@@ -216,7 +216,7 @@ export default function HeroBanner({
       style={heroStyle}
       className="relative w-full bg-[var(--bg)] lg:h-[var(--heroH)]"
     >
-      <div className="container-editorial py-6 sm:py-8 lg:py-12 lg:h-full">
+      <div className="container-editorial py-6 sm:py-8 lg:py-4 lg:h-full">
         {/* Main Grid */}
         <div
           className="grid gap-6 lg:gap-8 lg:h-full lg:min-h-0 lg:grid-cols-12 lg:items-stretch"
@@ -336,7 +336,7 @@ export default function HeroBanner({
           </div>
 
           {/* RIGHT - Content Section */}
-          <div className="lg:col-span-5 lg:h-full lg:min-h-0">
+          <div className="lg:col-span-5 lg:h-full lg:min-h-0 lg:overflow-y-auto">
             <div className="flex h-full min-h-0 flex-col">
               {/* Header */}
               <div className="mb-4 sm:mb-6">
@@ -349,20 +349,20 @@ export default function HeroBanner({
               </div>
 
               {/* Title */}
-              <h1 className="mb-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-[var(--text-1)] line-clamp-2 sm:line-clamp-3">
+              <h1 className="mb-4 font-serif text-3xl md:text-4xl lg:text-5xl leading-tight text-[var(--text-1)] line-clamp-2 sm:line-clamp-3 lg:line-clamp-2">
                 {title}
               </h1>
 
               {/* Summary */}
               {summary && (
-                <p className="mb-6 max-w-md text-base leading-relaxed text-[var(--text-2)] line-clamp-3 sm:line-clamp-2">
+                <p className="mb-6 max-w-md text-base leading-relaxed text-[var(--text-2)] line-clamp-3 sm:line-clamp-2 lg:mb-4 lg:line-clamp-2">
                   {summary}
                 </p>
               )}
 
               {/* Highlights */}
               {bullets.length > 0 && (
-                <ul className="mb-8 space-y-3">
+                <ul className="mb-8 space-y-3 lg:mb-6 lg:space-y-2 lg:[&>li:nth-child(n+3)]:hidden">
                   {bullets.map((b, i) => (
                     <li key={i} className="flex items-start gap-3">
                       <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[var(--primary)] flex-shrink-0" />
