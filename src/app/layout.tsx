@@ -19,7 +19,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-	title: "YourBrand Tours - Curated Travel Experiences",
+	title: "tripicca Tours - Curated Travel Experiences",
 	description: "Discover handpicked activities and unforgettable journeys around the world",
 };
 

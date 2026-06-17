@@ -15,10 +15,10 @@ export default function Footer() {
           <div className="md:col-span-4">
             <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
               <span className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-[var(--bg)] font-serif text-base font-semibold">
-                Y
+                t
               </span>
               <span className="font-serif text-xl text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors duration-300">
-                YourBrand
+                tripicca
               </span>
             </Link>
             <p className="text-sm text-[var(--text-2)] leading-relaxed max-w-xs mb-8">
@@ -129,10 +129,10 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a 
-                  href="mailto:hello@yourbrand.com" 
+                  href="mailto:hello@tripicca.com" 
                   className="text-sm text-[var(--text-2)] hover:text-[var(--primary)] transition-colors duration-300"
                 >
-                  hello@yourbrand.com
+                  hello@tripicca.com
                 </a>
               </li>
               <li>
@@ -155,7 +155,7 @@ export default function Footer() {
         <div className="border-t border-[var(--border)]/50 mt-16 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-xs text-[var(--text-3)]">
-              © {currentYear} YourBrand. All rights reserved.
+              © {currentYear} tripicca. All rights reserved.
             </p>
             <div className="flex items-center gap-6">
               <Link 

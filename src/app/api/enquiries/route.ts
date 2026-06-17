@@ -2,8 +2,8 @@ import { db } from "../../../../db/client";
 import { enquiries } from "../../../../db/schema";
 import { NextRequest, NextResponse } from "next/server";
 
-const SITE_NAME = "YourBrand Tours";
-const SITE_ID = "yourbrand-tours";
+const SITE_NAME = "tripicca Tours";
+const SITE_ID = "tripicca-tours";
 
 export async function POST(request: NextRequest) {
   try {
