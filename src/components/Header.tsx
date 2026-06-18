@@ -64,10 +64,10 @@ export default function Header() {
               className="group flex items-center gap-2"
             >
               <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-[var(--bg)] font-serif text-sm font-semibold">
-                t
+                T
               </span>
-              <span className="font-serif text-lg font-medium text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors duration-300">
-                tripicca
+              <span className="font-serif text-xs sm:text-sm lg:text-base xl:text-lg font-medium text-[var(--text-1)] group-hover:text-[var(--primary)] transition-colors duration-300">
+                TRIPICCA PRIVATE LIMITED
               </span>
             </Link>
 
